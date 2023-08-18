@@ -15,6 +15,11 @@ export default function SignUpModal() {
 
   const formRef = useRef();
 
+  const closeModal = () => {
+    setValidation("");
+    toggleModals("close")
+  }
+
   const handleForm = async (e) => {
     e.preventDefault();
     if((inputs.current[1].value.length || inputs.current[2].value.length) < 6 ){
@@ -36,9 +41,13 @@ export default function SignUpModal() {
         console.log(cred)
 
     } catch (err){
-      console.log(err)
+      if(err.code === "auth/invalid-email"){
+        setValidation("Email format invalid")
+      }
+      if(err.code === "auth/email-already-in-use"){
+        setValidation("Email already used")
+      }
     }
-
   }
 
   return (
@@ -46,7 +55,7 @@ export default function SignUpModal() {
       {modalState.signUpModal && (
         <div className="position-fixed top-0 vw-100 vh-100">
           <div
-            onClick={() => toggleModals('close')}
+            onClick={closeModal}
             className="w-100 h-100 bg-dark bg-opacity-75"
           ></div>
           <div
@@ -59,7 +68,7 @@ export default function SignUpModal() {
                   <h5 className="modal-title">Sign Up</h5>
                   <button
                     className="btn-close"
-                    onClick={() => toggleModals('close')}
+                    onClick={closeModal}
                   ></button>
                 </div>
                 <div className="modal-body">
