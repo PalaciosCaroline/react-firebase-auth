@@ -3,7 +3,6 @@ import { UserContext } from '../context/userContext';
 
 export default function SignUpModal() {
   const { modalState, toggleModals } = useContext(UserContext);
-  console.log(modalState, toggleModals);
 
   return (
     <>
