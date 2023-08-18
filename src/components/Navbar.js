@@ -24,7 +24,7 @@ export default function Navbar() {
           Sign In
         </button>
         <button
-          onClick={() => toggleModals('close')}
+      
           className="btn btn-danger ms-2"
         >
           Log Out
