@@ -27,7 +27,7 @@ export function UserContextProvider (props) {
 
     //modal
     const [modalState, setModalState] = useState({
-        signUpModal: true,
+        signUpModal: false,
         signInModal: false
     })
 
